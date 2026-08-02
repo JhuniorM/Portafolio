@@ -103,14 +103,19 @@ const ProjectsGrid = () => {
   };
 
   return (
-    <section id="projects" className="projects-grid-section relative min-h-screen bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
+    <section id="projects" className="projects-grid-section relative min-h-screen overflow-hidden" style={{ background: "#050a0f" }}>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mb-4 bg-gradient-to-r from-gray-800 via-cyan-400 to-blue-500 dark:from-white dark:via-cyan-400 dark:to-blue-500 bg-clip-text text-transparent">
+        <div className="text-center mb-14">
+          <div className="inline-block mb-3">
+            <span className="font-jetbrains text-xs text-redteam/60 tracking-widest uppercase">
+              // projects.db loaded
+            </span>
+          </div>
+          <h2 className="rt-section-title mb-3">
             {t("ProjectsGrid.title")}
           </h2>
-          <div className="text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+          <div className="rt-section-subtitle max-w-2xl mx-auto">
             {t("ProjectsGrid.subtitle")}
           </div>
         </div>

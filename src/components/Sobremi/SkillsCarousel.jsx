@@ -6,102 +6,75 @@ import './SkillsCarousel.css';
 gsap.registerPlugin(Draggable);
 
 const SkillsCarousel = () => {
-  // Refs para los tracks del carousel
-  const frontendTrackRef = useRef(null);
-  const backendTrackRef = useRef(null);
-  const toolsTrackRef = useRef(null);
+  const offensiveTrackRef = useRef(null);
+  const defensiveTrackRef = useRef(null);
+  const devTrackRef = useRef(null);
 
-  // Refs para los timelines de GSAP
-  const frontendTimelineRef = useRef(null);
-  const backendTimelineRef = useRef(null);
-  const toolsTimelineRef = useRef(null);
+  const offensiveTimelineRef = useRef(null);
+  const defensiveTimelineRef = useRef(null);
+  const devTimelineRef = useRef(null);
 
-  // Refs para los draggables
-  const frontendDraggableRef = useRef(null);
-  const backendDraggableRef = useRef(null);
-  const toolsDraggableRef = useRef(null);
+  const offensiveDraggableRef = useRef(null);
+  const defensiveDraggableRef = useRef(null);
+  const devDraggableRef = useRef(null);
 
-  // Ref para el timeout del debounce
   const resizeTimeoutRef = useRef(null);
 
-  // Mapeo de tecnologías a clases de Devicons
   const techIcons = {
-    // Frontend
-    'HTML5': 'devicon-html5-plain colored',
-    'CSS3': 'devicon-css3-plain colored',
-    'JavaScript': 'devicon-javascript-plain colored',
-    'TypeScript': 'devicon-typescript-plain colored',
+    // Red Team / Offensive
+    'Kali Linux': 'devicon-linux-plain colored',
+    'Metasploit': 'devicon-ruby-plain colored',
+    'Nmap': 'devicon-bash-plain colored',
+    'Burp Suite': 'devicon-java-plain colored',
+    'Wireshark': 'devicon-network-plain colored', 
+    'Python': 'devicon-python-plain colored',
+    // Blue Team / Defensive
+    'Splunk': 'devicon-splunk-original colored',
+    'SIEM': 'devicon-linux-plain colored',
+    'Firewall': 'devicon-linux-plain colored',
+    'Arch Linux': 'devicon-archlinux-plain colored',
+    'Fedora': 'devicon-fedora-plain colored',
+    // Dev
     'React': 'devicon-react-original colored',
-    'Angular': 'devicon-angularjs-plain colored',
-    'Next.js': 'devicon-nextjs-original-wordmark colored',
-    'Astro': 'devicon-astro-plain colored',
-    'Redux': 'devicon-redux-original colored',
-    'Tailwind CSS': 'devicon-tailwindcss-original colored',
-    'Material UI': 'devicon-materialui-plain colored',
-    'PrimeNG': 'devicon-primeng-plain colored', 
-    'Three.js': 'devicon-threejs-original colored',
-    // Backend
-    'Node.js': 'devicon-nodejs-plain colored',
-    'Express.js': 'devicon-express-original colored',
-    'MongoDB': 'devicon-mongodb-plain colored',
-    'Mongoose': 'devicon-mongoose-original colored',
-    'Firebase': 'devicon-firebase-plain colored',
-    'Socket.IO': 'devicon-socketio-original colored',
-    'C#': 'devicon-csharp-plain colored',
-    // Tools
+    'Laravel': 'devicon-laravel-plain colored',
+    'Tailwind': 'devicon-tailwindcss-original colored',
+    'JavaScript': 'devicon-javascript-plain colored',
+    'n8n': 'devicon-nodejs-plain colored',
     'Git': 'devicon-git-plain colored',
-    'GitHub': 'devicon-github-original colored',
-    'GitLab': 'devicon-gitlab-plain colored',
     'Docker': 'devicon-docker-plain colored',
-    'Postman': 'devicon-postman-plain colored',
-    'Jira': 'devicon-jira-plain colored',
-    'Vercel': 'devicon-vercel-original colored'
   };
 
-  // Frontend technologies con iconos
-  const frontendTechs = [
-    { name: 'HTML5', icon: techIcons['HTML5'] },
-    { name: 'CSS3', icon: techIcons['CSS3'] },
-    { name: 'JavaScript', icon: techIcons['JavaScript'] },
-    { name: 'TypeScript', icon: techIcons['TypeScript'] },
+  const offensiveTechs = [
+    { name: 'Kali Linux', icon: techIcons['Kali Linux'] },
+    { name: 'Metasploit', icon: techIcons['Metasploit'] },
+    { name: 'Nmap', icon: techIcons['Nmap'] },
+    { name: 'Burp Suite', icon: techIcons['Burp Suite'] },
+    { name: 'Python', icon: techIcons['Python'] },
+  ];
+
+  const defensiveTechs = [
+    { name: 'Splunk', icon: techIcons['Splunk'] },
+    { name: 'Wireshark', icon: techIcons['Wireshark'] },
+    { name: 'SIEM', icon: techIcons['SIEM'] },
+    { name: 'Arch Linux', icon: techIcons['Arch Linux'] },
+    { name: 'Fedora', icon: techIcons['Fedora'] },
+  ];
+
+  const devTechs = [
     { name: 'React', icon: techIcons['React'] },
-    { name: 'Angular', icon: techIcons['Angular'] },
-    { name: 'Next.js', icon: techIcons['Next.js'] },
-    { name: 'Astro', icon: techIcons['Astro'] },
-    { name: 'Redux', icon: techIcons['Redux'] },
-    { name: 'Tailwind CSS', icon: techIcons['Tailwind CSS'] },
-    { name: 'Material UI', icon: techIcons['Material UI'] },
-    { name: 'PrimeNG', icon: techIcons['PrimeNG'] },
-    { name: 'Three.js', icon: techIcons['Three.js'] }
-  ];
-
-  // Backend technologies con iconos
-  const backendTechs = [
-    { name: 'Node.js', icon: techIcons['Node.js'] },
-    { name: 'Express.js', icon: techIcons['Express.js'] },
-    { name: 'MongoDB', icon: techIcons['MongoDB'] },
-    { name: 'Mongoose', icon: techIcons['Mongoose'] },
-    { name: 'Firebase', icon: techIcons['Firebase'] },
-    { name: 'Socket.IO', icon: techIcons['Socket.IO'] },
-    { name: 'C#', icon: techIcons['C#'] }
-  ];
-
-  // Tools con iconos
-  const tools = [
-    { name: 'Git', icon: techIcons['Git'] },
-    { name: 'GitHub', icon: techIcons['GitHub'] },
-    { name: 'GitLab', icon: techIcons['GitLab'] },
+    { name: 'Laravel', icon: techIcons['Laravel'] },
+    { name: 'Tailwind', icon: techIcons['Tailwind'] },
+    { name: 'JavaScript', icon: techIcons['JavaScript'] },
+    { name: 'n8n', icon: techIcons['n8n'] },
     { name: 'Docker', icon: techIcons['Docker'] },
-    { name: 'Postman', icon: techIcons['Postman'] },
-    { name: 'Jira', icon: techIcons['Jira'] },
-    { name: 'Vercel', icon: techIcons['Vercel'] },
+    { name: 'Git', icon: techIcons['Git'] },
   ];
 
   const duplicateArray = (arr) => [...arr, ...arr, ...arr];
 
   const getTrackMetrics = (element) => {
     const computedStyle = window.getComputedStyle(element);
-    const gap = parseFloat(computedStyle.gap) || parseFloat(computedStyle.columnGap) || 20;
+    const gap = parseFloat(computedStyle.gap) || 20;
     const scrollWidth = element.scrollWidth;
     return { scrollWidth, gap };
   };
@@ -111,189 +84,120 @@ const SkillsCarousel = () => {
       timelineRef.current.kill();
       timelineRef.current = null;
     }
-
-    if (draggableRef.current) {
-      draggableRef.current.kill();
+    if (draggableRef.current && draggableRef.current.length > 0) {
+      draggableRef.current[0].kill();
       draggableRef.current = null;
     }
   };
 
-  const initCarousel = (trackRef, itemCount, timelineRef, draggableRef) => {
-    if (!trackRef.current) return;
+  const initCarousel = useCallback((trackElement, timelineRef, draggableRef, direction = 1, duration = 30) => {
+    if (!trackElement) return;
 
-    // Medir directamente del DOM para precisión exacta
-    const { scrollWidth, gap } = getTrackMetrics(trackRef.current);
-    
+    cleanupCarousel(timelineRef, draggableRef);
 
-    const totalWidth = (scrollWidth + gap) / 3;
-    
-    if (totalWidth <= 0) return;
-    
-    const animationDuration = itemCount * 2; 
+    gsap.set(trackElement, { x: 0 });
 
-   
-    const proxy = document.createElement("div");
+    const { scrollWidth, gap } = getTrackMetrics(trackElement);
+    const itemWidth = (scrollWidth + gap) / 3;
 
-    const timeline = gsap.timeline({
+    timelineRef.current = gsap.to(trackElement, {
+      x: direction === 1 ? `-=${itemWidth}` : `+=${itemWidth}`,
+      duration: duration,
+      ease: 'none',
       repeat: -1,
-      paused: false, 
-      defaults: { ease: "none" }
-    });
-
-    timeline.to(trackRef.current, {
-      x: -totalWidth,
-      duration: animationDuration,
-      ease: "none",
       modifiers: {
-        x: gsap.utils.unitize(x => parseFloat(x) % totalWidth) 
+        x: gsap.utils.unitize((x) => {
+          return parseFloat(x) % itemWidth;
+        })
       }
     });
 
-    timelineRef.current = timeline;
-
-   
-    const draggable = Draggable.create(proxy, {
-      trigger: trackRef.current.parentElement, 
-      type: "x",
-      inertia: false, 
-      
-      onPress: function() {
-        timeline.pause(); 
-      },
-      
+    draggableRef.current = Draggable.create(trackElement, {
+      type: 'x',
+      inertia: true,
+      onPress: () => timelineRef.current.pause(),
+      onRelease: () => timelineRef.current.play(),
       onDrag: function() {
-        
-        const progressChange = this.deltaX / totalWidth;
-        
-        
-        const newProgress = gsap.utils.wrap(0, 1, timeline.progress() - progressChange);
-        
-        timeline.progress(newProgress);
+        gsap.set(this.target, { x: this.x % itemWidth });
       },
-      
-      onRelease: function() {
-       
-        timeline.play();
+      onThrowUpdate: function() {
+        gsap.set(this.target, { x: this.x % itemWidth });
       }
-    });
-
-    draggableRef.current = draggable[0];
-  };
-
-  const initializeAllCarousels = useCallback(() => {
-    cleanupCarousel(frontendTimelineRef, frontendDraggableRef);
-    cleanupCarousel(backendTimelineRef, backendDraggableRef);
-    cleanupCarousel(toolsTimelineRef, toolsDraggableRef);
-
-    requestAnimationFrame(() => {
-      initCarousel(
-        frontendTrackRef,
-        13,
-        frontendTimelineRef,
-        frontendDraggableRef
-      );
-
-      initCarousel(
-        backendTrackRef,
-        7,
-        backendTimelineRef,
-        backendDraggableRef
-      );
-
-      initCarousel(
-        toolsTrackRef,
-        8,
-        toolsTimelineRef,
-        toolsDraggableRef
-      );
     });
   }, []);
 
-  const handleResize = useCallback(() => {
-    if (resizeTimeoutRef.current) {
-      clearTimeout(resizeTimeoutRef.current);
-    }
-
-    resizeTimeoutRef.current = setTimeout(() => {
-      initializeAllCarousels();
-    }, 250);
-  }, [initializeAllCarousels]);
+  const setupCarousels = useCallback(() => {
+    initCarousel(offensiveTrackRef.current, offensiveTimelineRef, offensiveDraggableRef, 1, 35);
+    initCarousel(defensiveTrackRef.current, defensiveTimelineRef, defensiveDraggableRef, -1, 30);
+    initCarousel(devTrackRef.current, devTimelineRef, devDraggableRef, 1, 40);
+  }, [initCarousel]);
 
   useEffect(() => {
-    initializeAllCarousels();
+    // Timeout pequeño para asegurar renderizado completo
+    const initTimeout = setTimeout(() => {
+      setupCarousels();
+    }, 100);
+
+    const handleResize = () => {
+      if (resizeTimeoutRef.current) clearTimeout(resizeTimeoutRef.current);
+      resizeTimeoutRef.current = setTimeout(() => {
+        setupCarousels();
+      }, 250);
+    };
 
     window.addEventListener('resize', handleResize);
-    window.addEventListener('orientationchange', handleResize);
 
-    // Cleanup
     return () => {
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-
+      clearTimeout(initTimeout);
+      if (resizeTimeoutRef.current) clearTimeout(resizeTimeoutRef.current);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('orientationchange', handleResize);
-
-      cleanupCarousel(frontendTimelineRef, frontendDraggableRef);
-      cleanupCarousel(backendTimelineRef, backendDraggableRef);
-      cleanupCarousel(toolsTimelineRef, toolsDraggableRef);
+      cleanupCarousel(offensiveTimelineRef, offensiveDraggableRef);
+      cleanupCarousel(defensiveTimelineRef, defensiveDraggableRef);
+      cleanupCarousel(devTimelineRef, devDraggableRef);
     };
-  }, [initializeAllCarousels, handleResize]);
+  }, [setupCarousels]);
+
+  const Track = ({ title, techs, trackRef, trackClass }) => (
+    <div className={`carousel-container ${trackClass}`}>
+      <h4 className="carousel-title text-[#e8f0fe] mb-3 opacity-90 text-sm font-semibold tracking-wider font-SpaceMono">
+        <span className="text-redteam mr-2">{'>'}</span> {title}
+      </h4>
+      <div className="carousel-track-wrapper">
+        <div className="carousel-track" ref={trackRef}>
+          {duplicateArray(techs).map((tech, idx) => (
+            <div key={`${tech.name}-${idx}`} className="carousel-item">
+              <i className={`${tech.icon} text-3xl mb-2 opacity-80 group-hover:opacity-100 transition-opacity`}></i>
+              <span className="text-xs font-medium text-[#94a3b8] group-hover:text-white transition-colors">
+                {tech.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="skills-carousel-container">
-      {/* Frontend Section */}
-      <div className="skills-section">
-        <h3 className="skills-section-title">FRONTEND</h3>
-        <div className="carousel-wrapper">
-          <div
-            ref={frontendTrackRef}
-            className="carousel-track frontend-carousel"
-          >
-            {duplicateArray(frontendTechs).map((tech, index) => (
-              <div key={index} className="carousel-item">
-                <i className={`${tech.icon} tech-icon`}></i>
-                <span className="tech-name">{tech.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Backend Section */}
-      <div className="skills-section">
-        <h3 className="skills-section-title">BACKEND</h3>
-        <div className="carousel-wrapper">
-          <div
-            ref={backendTrackRef}
-            className="carousel-track backend-carousel"
-          >
-            {duplicateArray(backendTechs).map((tech, index) => (
-              <div key={index} className="carousel-item">
-                <i className={`${tech.icon} tech-icon`}></i>
-                <span className="tech-name">{tech.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Tools Section */}
-      <div className="skills-section">
-        <h3 className="skills-section-title">TOOLS</h3>
-        <div className="carousel-wrapper">
-          <div
-            ref={toolsTrackRef}
-            className="carousel-track tools-carousel"
-          >
-            {duplicateArray(tools).map((tech, index) => (
-              <div key={index} className="carousel-item">
-                <i className={`${tech.icon} tech-icon`}></i>
-                <span className="tech-name">{tech.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="skills-carousel-section">
+      <div className="skills-carousel-wrapper">
+        <Track 
+          title="[OFFENSIVE / RED TEAM]" 
+          techs={offensiveTechs} 
+          trackRef={offensiveTrackRef} 
+          trackClass="track-offensive"
+        />
+        <Track 
+          title="[DEFENSIVE / BLUE TEAM]" 
+          techs={defensiveTechs} 
+          trackRef={defensiveTrackRef} 
+          trackClass="track-defensive"
+        />
+        <Track 
+          title="[DEVELOPMENT]" 
+          techs={devTechs} 
+          trackRef={devTrackRef} 
+          trackClass="track-dev"
+        />
       </div>
     </div>
   );

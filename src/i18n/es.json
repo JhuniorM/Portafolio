@@ -14,34 +14,40 @@
     "responsibilities": "Responsabilidades"
   },
   "Servicios": {
-    "title": "Servicios freelance",
-    "subtitle": "Desarrollo de sistemas y soluciones web a medida",
+    "title": "Servicios",
+    "subtitle": "Soluciones ofensivas, defensivas y de desarrollo para entornos críticos",
     "cta": "¿Tienes un proyecto?",
     "cta_aria": "Ir a contacto",
     "services": [
       {
         "id": 1,
-        "title": "Desarrollo Frontend",
-        "description": "Interfaces modernas y optimizadas con React, Laravel Blade y Tailwind CSS.",
-        "icon": "Code2"
+        "title": "Pentesting & Red Team",
+        "description": "Evaluación ofensiva de infraestructuras: explotación de vulnerabilidades, post-explotación, pivoting y reporte técnico ejecutivo.",
+        "icon": "Shield"
       },
       {
         "id": 2,
-        "title": "Automatización con n8n",
-        "description": "Optimización de flujos de trabajo e integración de APIs y Webhooks.",
-        "icon": "Settings"
+        "title": "Blue Team & Monitoreo",
+        "description": "Detección de intrusiones con SIEM/Splunk, análisis de tráfico con Wireshark y respuesta a incidentes de seguridad.",
+        "icon": "ShieldCheck"
       },
       {
         "id": 3,
-        "title": "Gestión de Sistemas",
-        "description": "Administración de servidores, despliegues y configuración de entornos Linux.",
-        "icon": "Server"
+        "title": "Desarrollo Frontend",
+        "description": "Interfaces modernas y optimizadas con React, Laravel Blade y Tailwind CSS enfocadas en rendimiento.",
+        "icon": "Code2"
       },
       {
         "id": 4,
-        "title": "Ciberseguridad",
-        "description": "Auditorías de seguridad, análisis de tráfico y detección de intrusiones.",
-        "icon": "Wrench"
+        "title": "Automatización con n8n",
+        "description": "Optimización de flujos de trabajo, integración de APIs REST y Webhooks para entornos corporativos.",
+        "icon": "Settings"
+      },
+      {
+        "id": 5,
+        "title": "Gestión de Servidores Linux",
+        "description": "Administración de servidores, despliegues y hardening de entornos Linux (Fedora, Arch, Debian).",
+        "icon": "Server"
       }
     ]
   },
@@ -56,24 +62,24 @@
     "pageServices": [
       {
         "id": 1,
-        "title": "Desarrollo Frontend",
-        "description": "Interfaces modernas y optimizadas con React, Laravel Blade y Tailwind CSS.",
-        "img": "/proyectos-img/armaly.webp",
-        "imgAlt": "Desarrollo Frontend"
+        "title": "Pentesting & Red Team",
+        "description": "Evaluación ofensiva de infraestructuras con Nmap, Metasploit y Burp Suite.",
+        "img": "/proyectos-img/App-Escritorio.webp",
+        "imgAlt": "Red Team Operations"
       },
       {
         "id": 2,
         "title": "Automatización",
         "description": "Optimización de flujos de trabajo e integración de APIs y Webhooks mediante n8n.",
-        "img": "/proyectos-img/App-Escritorio.webp",
+        "img": "/proyectos-img/armaly.webp",
         "imgAlt": "Automatización"
       },
       {
         "id": 3,
-        "title": "Gestión de Servidores",
-        "description": "Administración de servidores cPanel, despliegues y aseguramiento de disponibilidad.",
+        "title": "Desarrollo Frontend",
+        "description": "Interfaces modernas con React, Laravel Blade y Tailwind CSS.",
         "img": "/proyectos-img/proyecto-polos.webp",
-        "imgAlt": "Servidores"
+        "imgAlt": "Frontend"
       }
     ]
   },
@@ -93,13 +99,7 @@
         "Colaboración en entornos ágiles con Git/GitHub"
       ],
       "technologies": [
-        "Laravel",
-        "Tailwind CSS",
-        "JavaScript",
-        "n8n",
-        "Google Analytics",
-        "cPanel",
-        "Git"
+        "Laravel", "Tailwind CSS", "JavaScript", "n8n", "Google Analytics", "cPanel", "Git"
       ]
     },
     {
@@ -114,11 +114,7 @@
         "Resolución de incidencias técnicas de primer nivel",
         "Cumplimiento de KPIs de calidad y rapidez"
       ],
-      "technologies": [
-        "SQL",
-        "Excel",
-        "Customer Service"
-      ]
+      "technologies": ["SQL", "Excel", "Customer Service"]
     },
     {
       "id": 3,
@@ -132,57 +128,44 @@
         "Análisis y diseño de sistemas",
         "Prácticas en entornos de desarrollo"
       ],
-      "technologies": [
-        "C#",
-        "SQL Server",
-        "PHP",
-        "JavaScript"
-      ]
+      "technologies": ["C#", "SQL Server", "PHP", "JavaScript"]
     }
   ],
   "Presentacion": {
     "greeting": "Hola, Soy ",
     "subtitle": "Desarrollador de Sistemas & Ciberseguridad",
-    "description": "Especializado en desarrollo frontend, automatización de flujos y ciberseguridad. Enfocado en crear soluciones tecnológicas eficientes, seguras y escalables.",
-    "boton1": "Sobre Mi",
+    "description": "Especializado en operaciones Red Team, desarrollo frontend y automatización. Construyo sistemas seguros, eficientes y escalables en entornos Linux.",
+    "boton1": "Sobre Mí",
     "boton2": "Descargar CV",
     "link-cv": "/User/cv_jhunior_documentado_.pdf"
   },
   "Sobremi": {
-    "sobre": "Sobre mi",
-    "subsobre": "Transformando datos en soluciones tecnológicas seguras",
-    "conoceme": "Conóceme mejor",
+    "sobre": "Sobre Mí",
+    "subsobre": "// Operador Red Team & Systems Developer",
+    "conoceme": "$ cat about.txt",
     "boton_proyecto": "Ver proyectos",
     "descripcion": {
-      "1": "Soy Jhunior Mendoza, un profesional apasionado por el desarrollo de sistemas y la ciberseguridad. Actualmente curso Ingeniería de Sistemas en la UPN y cuento con un título técnico en Desarrollo de Sistemas de Información.",
-      "2": "Mi experiencia se centra en el desarrollo frontend utilizando Laravel y React, así como en la automatización de procesos complejos mediante herramientas como n8n. Además, tengo un fuerte interés en la ciberseguridad, operando laboratorios propios para simulaciones de defensa y ataque.",
-      "3": "Busco constantemente optimizar la experiencia del usuario y la seguridad de las plataformas en las que trabajo, integrando analítica avanzada para la toma de decisiones basada en datos."
+      "1": "Soy Jhunior Mendoza, profesional en desarrollo de sistemas y ciberseguridad con enfoque ofensivo. Actualmente curso Ingeniería de Sistemas en la UPN con título técnico en Desarrollo de Sistemas de Información.",
+      "2": "Opero laboratorios propios de Red Team y Blue Team en Fedora y Arch Linux usando Podman y VMware. Mi stack de seguridad incluye Nmap, Metasploit, Burp Suite, Wireshark y Splunk para simulaciones de ataque-defensa.",
+      "3": "En el lado del desarrollo, construyo interfaces con React y Laravel, automatizo flujos con n8n e implemento analítica avanzada. Busco crear tecnología que sea tan robusta en seguridad como en experiencia de usuario."
     }
   },
   "Mishabilidades": {
-    "habher": "Mis habilidades y herramientas"
+    "habher": "Stack & Herramientas"
   },
   "ProjectsGrid": {
-    "title": "Proyectos Destacados",
-    "subtitle": "Innovación y seguridad en cada línea",
+    "title": "Proyectos",
+    "subtitle": "// Operaciones técnicas documentadas",
     "projects": [
       {
         "order": 1,
         "sectionNumber": 1,
         "layout": "main",
-        "name": "Laboratorio de Ciberseguridad (Home Lab)",
-        "description": "Entorno controlado desplegado en Fedora 43 y Arch Linux utilizando Podman y VMware para simulaciones de Red Team y Blue Team. Implementación de herramientas como Nmap, Metasploit y Splunk.",
-        "skills": [
-          "Linux",
-          "Podman",
-          "VMware",
-          "Nmap",
-          "Splunk",
-          "Metasploit",
-          "Ciberseguridad"
-        ],
+        "name": "Home Lab — Red & Blue Team",
+        "description": "Entorno controlado en Fedora 43 y Arch Linux con Podman y VMware para simulaciones ofensivas y defensivas. Herramientas: Nmap, Metasploit, Burp Suite, Wireshark, Splunk. Escenarios de ataque y respuesta a incidentes.",
+        "skills": ["Kali Linux", "Metasploit", "Nmap", "Splunk", "Wireshark", "Podman", "VMware"],
         "img": "/proyectos-img/App-Escritorio.webp",
-        "alt": "Laboratorio de Ciberseguridad",
+        "alt": "Laboratorio Red Team / Blue Team",
         "href": "#",
         "code": "https://github.com/JhuniorM"
       },
@@ -190,8 +173,8 @@
         "order": 2,
         "sectionNumber": 2,
         "layout": "b",
-        "name": "Automatización de Leads - n8n",
-        "description": "Sistema de captura y procesamiento de leads automatizado integrando APIs REST y Webhooks para optimizar el flujo de trabajo en entornos corporativos.",
+        "name": "Automatización de Leads — n8n",
+        "description": "Sistema de captura y procesamiento de leads automatizado integrando APIs REST y Webhooks para optimizar el flujo de trabajo corporativo con reportes en tiempo real.",
         "skills": ["n8n", "APIs REST", "Webhooks", "JavaScript"],
         "img": "/proyectos-img/armaly.webp",
         "alt": "Automatización con n8n",
@@ -201,7 +184,7 @@
     ]
   },
   "Footer": {
-    "description": "Desarrollador de Sistemas enfocado en la excelencia técnica y la seguridad digital.",
+    "description": "Desarrollador de Sistemas & Operador Red Team. Construyendo tecnología segura y escalable.",
     "connect": "Conecta Conmigo",
     "collaborate": "¿Interesado en colaborar?",
     "rights": "Todos los derechos reservados."
@@ -212,4 +195,3 @@
     "whatsapp_contact": "Contactar por WhatsApp para colaboración"
   }
 }
-

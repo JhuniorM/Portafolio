@@ -14,34 +14,40 @@
     "responsibilities": "Responsibilities"
   },
   "Servicios": {
-    "title": "Freelance services",
-    "subtitle": "System development and custom web solutions",
+    "title": "Services",
+    "subtitle": "Offensive, defensive and development solutions for critical environments",
     "cta": "Have a project?",
     "cta_aria": "Go to contact",
     "services": [
       {
         "id": 1,
-        "title": "Frontend Development",
-        "description": "Modern and optimized interfaces with React, Laravel Blade, and Tailwind CSS.",
-        "icon": "Code2"
+        "title": "Pentesting & Red Team",
+        "description": "Offensive infrastructure assessment: vulnerability exploitation, post-exploitation, pivoting and executive technical report.",
+        "icon": "Shield"
       },
       {
         "id": 2,
-        "title": "n8n Automation",
-        "description": "Workflow optimization and integration of REST APIs and Webhooks.",
-        "icon": "Settings"
+        "title": "Blue Team & Monitoring",
+        "description": "Intrusion detection with SIEM/Splunk, traffic analysis with Wireshark and cybersecurity incident response.",
+        "icon": "ShieldCheck"
       },
       {
         "id": 3,
-        "title": "System Management",
-        "description": "Server administration, deployments, and Linux environment configuration.",
-        "icon": "Server"
+        "title": "Frontend Development",
+        "description": "Modern and optimized interfaces with React, Laravel Blade, and Tailwind CSS focused on performance.",
+        "icon": "Code2"
       },
       {
         "id": 4,
-        "title": "Cybersecurity",
-        "description": "Security audits, traffic analysis, and intrusion detection.",
-        "icon": "Wrench"
+        "title": "n8n Automation",
+        "description": "Workflow optimization, REST API and Webhooks integration for corporate environments.",
+        "icon": "Settings"
+      },
+      {
+        "id": 5,
+        "title": "Linux Server Management",
+        "description": "Server administration, deployments and hardening of Linux environments (Fedora, Arch, Debian).",
+        "icon": "Server"
       }
     ]
   },
@@ -143,28 +149,28 @@
   "Presentacion": {
     "greeting": "Hey, I'm ",
     "subtitle": "Systems Developer & Cybersecurity",
-    "description": "Specialized in frontend development, workflow automation, and cybersecurity. Focused on creating efficient, secure, and scalable technological solutions.",
+    "description": "Specialized in Red Team operations, frontend development and automation. Building secure, efficient and scalable systems on Linux environments.",
     "boton1": "About",
     "boton2": "Download CV",
     "link-cv": "/User/cv_jhunior_documentado_.pdf"
   },
   "Sobremi": {
-    "sobre": "About me",
-    "subsobre": "Transforming data into secure technological solutions",
-    "conoceme": "Know me better",
+    "sobre": "About Me",
+    "subsobre": "// Red Team Operator & Systems Developer",
+    "conoceme": "$ cat about.txt",
     "boton_proyecto": "View projects",
     "descripcion": {
-      "1": "I'm Jhunior Mendoza, a professional passionate about systems development and cybersecurity. Currently studying Systems Engineering at UPN and holding a technical degree in Information Systems Development.",
-      "2": "My experience focuses on frontend development using Laravel and React, as well as complex process automation through tools like n8n. Additionally, I have a strong interest in cybersecurity, operating my own labs for defense and attack simulations.",
-      "3": "I constantly seek to optimize user experience and platform security, integrating advanced analytics for data-driven decision making."
+      "1": "I'm Jhunior Mendoza, a systems developer and cybersecurity professional with an offensive focus. Currently studying Systems Engineering at UPN with a technical degree in Information Systems Development.",
+      "2": "I operate my own Red Team and Blue Team labs on Fedora and Arch Linux using Podman and VMware. My security stack includes Nmap, Metasploit, Burp Suite, Wireshark and Splunk for attack-defense simulations.",
+      "3": "On the development side, I build interfaces with React and Laravel, automate workflows with n8n and implement advanced analytics. I aim to create technology that is as robust in security as it is in user experience."
     }
   },
   "Mishabilidades": {
-    "habher": "My skills and tools"
+    "habher": "Stack & Tools"
   },
   "ProjectsGrid": {
-    "title": "Featured Projects",
-    "subtitle": "Innovation and security in every line",
+    "title": "Projects",
+    "subtitle": "// Technical operations documented",
     "projects": [
       {
         "order": 1,
@@ -201,7 +207,7 @@
     ]
   },
   "Footer": {
-    "description": "Systems Developer focused on technical excellence and digital security.",
+    "description": "Systems Developer & Red Team Operator. Building secure and scalable technology.",
     "connect": "Connect With Me",
     "collaborate": "Interested in collaborating?",
     "rights": "All rights reserved."

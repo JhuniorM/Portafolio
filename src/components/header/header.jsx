@@ -1,17 +1,12 @@
 import "../../styles/header.css";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  useTheme,
-  getImageSource,
-  LANGUAGES,
-  useLanguage,
-} from "./themeUtils.jsx";
+import { useTheme, getImageSource, LANGUAGES, useLanguage } from "./themeUtils.jsx";
 import MyAge from "../Myage/myage.jsx";
 import { useTranslation } from "react-i18next";
 import ThemeToggle from "./ThemeToggle";
 import Tooltip from "./Tooltip";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Terminal } from "lucide-react";
 
 const OVERLAY_DURATION_MS = 160;
 
@@ -26,22 +21,26 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [entered, setEntered] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const exitTimeoutRef = useRef(null);
 
-  // Cierra el menú al cambiar de ruta (sin animación)
   useEffect(() => {
     setMenuOpen(false);
     setIsExiting(false);
   }, [location.pathname]);
 
-  // Bloquea scroll cuando el menú está abierto o cerrando
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const overlayVisible = menuOpen || isExiting;
   useEffect(() => {
     document.body.style.overflow = overlayVisible ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [overlayVisible]);
 
-  // Animación de entrada: un frame después de montar
   useEffect(() => {
     if (menuOpen && !isExiting) {
       setEntered(false);
@@ -50,7 +49,6 @@ function Header() {
     }
   }, [menuOpen, isExiting]);
 
-  // Cerrar con animación: primero isExiting, luego desmontar
   const closeMenu = () => {
     if (!menuOpen) return;
     setIsExiting(true);
@@ -70,67 +68,79 @@ function Header() {
   return (
     <>
       <nav
-        className={
-          menuOpen
-            ? "fixed inset-x-0 top-0 z-[100] bg-white dark:bg-slate-900"
-            : "bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm"
-        }
+        style={{
+          background: scrolled
+            ? "rgba(5, 10, 15, 0.95)"
+            : "rgba(5, 10, 15, 0.8)",
+          borderBottom: "1px solid rgba(255, 45, 85, 0.15)",
+          backdropFilter: "blur(12px)",
+          transition: "all 0.3s ease",
+        }}
+        className={menuOpen ? "fixed inset-x-0 top-0 z-[100]" : ""}
       >
         <div className="nav-content">
-          {/* ── Lado izquierdo ── */}
-          <div className="flex gap-1 py-5 items-center">
+          {/* ── Izquierda ── */}
+          <div className="flex gap-2 py-4 items-center">
             <MyAge />
             <Link
               to="/"
-              className="hidden sm:block text-2xl text-gray-800 font-black dark:text-[#e8e6e3] hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+              className="hidden sm:flex items-center gap-2 group"
             >
-              JHUNIORM.DEV
+              <Terminal className="w-4 h-4 text-redteam group-hover:text-redteam/80 transition-colors" />
+              <span className="font-SpaceMono text-xl font-bold text-white group-hover:text-redteam transition-colors duration-300">
+                JHUNIORM<span className="text-redteam">.DEV</span>
+              </span>
             </Link>
             <Link
               to="/servicio"
-              className="hidden sm:inline-flex ml-4 items-baseline gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              className="hidden sm:inline-flex ml-4 items-baseline gap-1.5 px-3 py-1.5 rounded-sm transition-all duration-300 font-jetbrains text-xs"
+              style={{
+                color: "#94a3b8",
+                border: "1px solid transparent",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = "#00ff9f";
+                e.currentTarget.style.borderColor = "rgba(0,255,159,0.3)";
+                e.currentTarget.style.background = "rgba(0,255,159,0.05)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = "#94a3b8";
+                e.currentTarget.style.borderColor = "transparent";
+                e.currentTarget.style.background = "transparent";
+              }}
             >
               {t("Menu.Servicios")}
-              <span className="text-[10px] uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-normal">
+              <span className="text-[10px] uppercase tracking-wider text-redteam/70 font-normal">
                 freelance
               </span>
             </Link>
           </div>
 
-          {/* ── Lado derecho ── */}
-          <div className="flex items-center">
+          {/* ── Derecha ── */}
+          <div className="flex items-center gap-1">
             {currentLanguage && (
-              <Tooltip
-                text={currentLanguage.code === "es" ? "Español" : "English"}
-                position="bottom"
-              >
-                <div className="relative group mx-2 p-1 rounded-full dark:hover:bg-gray-800 transition-colors duration-300 cursor-pointer">
-                  <div
-                    className="transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-2 group-hover:shadow-xl group-active:scale-95 group-hover:brightness-110"
-                    onClick={toggleLanguage}
-                  >
-                    <img
-                      src={currentLanguage.icon}
-                      alt={currentLanguage.code}
-                      className="w-6 h-6 rounded-full border-2 border-transparent transition-all duration-300"
-                    />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400/20 to-blue-400/20 opacity-0 transition-opacity duration-300 pointer-events-none" />
-                  </div>
+              <Tooltip text={currentLanguage.code === "es" ? "Español" : "English"} position="bottom">
+                <div className="relative group mx-1 p-1.5 rounded-sm cursor-pointer transition-all duration-300"
+                  style={{ border: "1px solid transparent" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,45,85,0.3)"; e.currentTarget.style.background = "rgba(255,45,85,0.05)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "transparent"; e.currentTarget.style.background = "transparent"; }}
+                  onClick={toggleLanguage}>
+                  <img
+                    src={currentLanguage.icon}
+                    alt={currentLanguage.code}
+                    className="w-5 h-5 rounded-full transition-transform duration-300 group-hover:scale-110"
+                  />
                 </div>
               </Tooltip>
             )}
-            <Tooltip
-              text={theme === "light" ? "Modo Oscuro" : "Modo Claro"}
-              position="bottom"
-            >
-              <ThemeToggle
-                theme={theme}
-                toggleTheme={toggleTheme}
-                imageSource={imageSource}
-              />
+            <Tooltip text={theme === "light" ? "Modo Oscuro" : "Modo Claro"} position="bottom">
+              <ThemeToggle theme={theme} toggleTheme={toggleTheme} imageSource={imageSource} />
             </Tooltip>
             <button
-              className="sm:hidden ml-1 p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+              className="sm:hidden ml-1 p-2 rounded-sm transition-all duration-300"
+              style={{ color: "#94a3b8", border: "1px solid transparent" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,45,85,0.4)"; e.currentTarget.style.color = "#ff2d55"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "transparent"; e.currentTarget.style.color = "#94a3b8"; }}
               onClick={() => (menuOpen ? closeMenu() : setMenuOpen(true))}
               aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             >
@@ -140,53 +150,51 @@ function Header() {
         </div>
       </nav>
 
-      {/* Overlay móvil: pantalla completa + animación slide */}
+      {/* Overlay móvil */}
       {overlayVisible && (
         <div
-          className={`sm:hidden fixed inset-0 z-[110] bg-white dark:bg-slate-900 flex flex-col transition-transform duration-300 ease-out ${
+          className={`sm:hidden fixed inset-0 z-[110] flex flex-col transition-transform duration-300 ease-out ${
             entered && !isExiting ? "translate-x-0" : "translate-x-full"
           }`}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menú de navegación"
+          style={{ background: "#050a0f", borderLeft: "1px solid rgba(255,45,85,0.2)" }}
+          role="dialog" aria-modal="true" aria-label="Menú de navegación"
         >
-          {/* Barra superior: logo + BIGNIGHT arriba a la izquierda, X a la derecha */}
-          <div className="h-16 flex items-center justify-between px-4 shrink-0 border-b border-gray-200 dark:border-slate-700">
-            <Link
-              to="/"
-              className="flex items-center gap-2 hover:opacity-90 transition-opacity"
-              onClick={closeMenu}
-            >
-              <img
-                src="/others/jhunior_logo.png"
-                alt=""
-                className="w-8 h-8 rounded-lg object-cover"
-              />
-              <span className="text-lg font-black text-gray-900 dark:text-white tracking-tight">
-                JHUNIORM.DEV
+          {/* Top bar */}
+          <div className="h-16 flex items-center justify-between px-4 shrink-0"
+            style={{ borderBottom: "1px solid rgba(255,45,85,0.15)" }}>
+            <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity" onClick={closeMenu}>
+              <Terminal className="w-5 h-5 text-redteam" />
+              <span className="font-SpaceMono text-lg font-bold text-white">
+                JHUNIORM<span className="text-redteam">.DEV</span>
               </span>
             </Link>
             <button
               type="button"
-              className="p-2.5 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
-              onClick={closeMenu}
-              aria-label="Cerrar menú"
+              className="p-2 rounded-sm transition-all duration-300"
+              style={{ color: "#94a3b8", border: "1px solid rgba(255,45,85,0.2)" }}
+              onClick={closeMenu} aria-label="Cerrar menú"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Servicios: título y debajo "freelance" */}
-          <div className="flex-1 flex flex-col items-center justify-center px-6 min-h-0">
+          {/* Menu items */}
+          <div className="flex-1 flex flex-col items-center justify-center px-6 gap-4">
             <Link
               to="/servicio"
-              className="w-full max-w-sm flex flex-col items-center py-4 px-6 rounded-2xl bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 active:scale-[0.98] transition-all"
+              className="w-full max-w-sm flex flex-col items-center py-4 px-6 rounded-sm transition-all duration-300"
+              style={{
+                background: "rgba(255,45,85,0.05)",
+                border: "1px solid rgba(255,45,85,0.2)",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,45,85,0.5)"; e.currentTarget.style.background = "rgba(255,45,85,0.1)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,45,85,0.2)"; e.currentTarget.style.background = "rgba(255,45,85,0.05)"; }}
               onClick={closeMenu}
             >
-              <span className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+              <span className="font-SpaceMono text-lg font-semibold text-white">
                 {t("Menu.Servicios")}
               </span>
-              <span className="text-xs uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-normal mt-0.5">
+              <span className="font-jetbrains text-xs uppercase tracking-wider text-redteam/70 mt-1">
                 freelance
               </span>
             </Link>

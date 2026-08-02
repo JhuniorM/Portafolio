@@ -3,24 +3,15 @@ import { Link } from "react-scroll";
 import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Award,
-  Target,
-} from "lucide-react";
+import { Target } from "lucide-react";
 import SkillsCarousel from "./SkillsCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const DESCRIPTION = [
-  {
-    description: "Sobremi.descripcion.1",
-  },
-  {
-    description: "Sobremi.descripcion.2",
-  },
-  {
-    description: "Sobremi.descripcion.3",
-  },
+  { description: "Sobremi.descripcion.1" },
+  { description: "Sobremi.descripcion.2" },
+  { description: "Sobremi.descripcion.3" },
 ];
 
 const Sobremi = () => {
@@ -32,59 +23,19 @@ const Sobremi = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animación del título principal
-      gsap.fromTo(
-        titleRef.current,
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      // Animación del contenido
-      gsap.fromTo(
-        contentRef.current,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-          delay: 0.3,
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      // Animación de las skills carousel
-      gsap.fromTo(
-        skillsRef.current,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: skillsRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      gsap.fromTo(titleRef.current, { y: 80, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+        scrollTrigger: { trigger: titleRef.current, start: "top 80%", toggleActions: "play none none reverse" },
+      });
+      gsap.fromTo(contentRef.current, { y: 50, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1, ease: "power2.out", delay: 0.3,
+        scrollTrigger: { trigger: contentRef.current, start: "top 80%", toggleActions: "play none none reverse" },
+      });
+      gsap.fromTo(skillsRef.current, { y: 30, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: skillsRef.current, start: "top 80%", toggleActions: "play none none reverse" },
+      });
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
@@ -92,73 +43,85 @@ const Sobremi = () => {
     <section
       ref={sectionRef}
       id="sobremi"
-      className="relative min-h-screen bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden"
+      className="relative min-h-screen overflow-hidden"
+      style={{ background: "linear-gradient(135deg, #050a0f 0%, #0a1628 60%, #050a0f 100%)" }}
     >
+      {/* Grid pattern de fondo */}
+      <div className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,45,85,0.08)' stroke-width='1'%3E%3Cpath d='M0 0h40v40H0z'/%3E%3C/g%3E%3C/svg%3E\")",
+          backgroundSize: "40px 40px",
+        }}
+      />
+      {/* Ambient glow */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-redteam/5 rounded-full blur-3xl -z-0 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-terminal/5 rounded-full blur-3xl -z-0 pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto sm:px-6 md:px-8 py-12">
-        {/* Header Section */}
-        <div ref={titleRef} className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mb-4 bg-gradient-to-r from-gray-800 via-cyan-400 to-blue-500 dark:from-white dark:via-cyan-400 dark:to-blue-500 bg-clip-text text-transparent">
+
+        {/* Header */}
+        <div ref={titleRef} className="text-center mb-14">
+          <div className="inline-block mb-3">
+            <span className="font-jetbrains text-xs text-terminal/70 tracking-widest uppercase">
+              // about.sys loaded
+            </span>
+          </div>
+          <h2 className="rt-section-title mb-3">
             {t("Sobremi.sobre")}
           </h2>
-          <div className="text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="rt-section-subtitle">
             {t("Sobremi.subsobre")}
-          </div>
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left Column - About Content */}
+
+          {/* ── Izquierda — About content ── */}
           <div ref={contentRef} className="space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-              <h3 className="text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white">
-                {t("Sobremi.conoceme")}
-              </h3>
-            </div>
+            <h3 className="font-jetbrains text-xl text-terminal glow-green-text mb-6">
+              {t("Sobremi.conoceme")}
+            </h3>
 
             <div className="space-y-4">
-              {DESCRIPTION.map((description, index) => (
-                <div
-                  key={index}
-                  className="group relative p-4 bg-gray-100/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-slate-700/50 hover:border-cyan-400/50 transition-all duration-300 hover:bg-gray-100/70 dark:hover:bg-slate-800/70"
+              {DESCRIPTION.map((desc, index) => (
+                <div key={index}
+                  className="group relative p-5 rounded-sm transition-all duration-300 cursor-default"
+                  style={{
+                    background: "rgba(10, 22, 40, 0.6)",
+                    border: "1px solid rgba(255, 45, 85, 0.12)",
+                    borderLeft: "3px solid rgba(255, 45, 85, 0.6)",
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(255,45,85,0.4)"; e.currentTarget.style.borderLeftColor = "#ff2d55"; e.currentTarget.style.boxShadow = "0 0 20px rgba(255,45,85,0.08)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,45,85,0.12)"; e.currentTarget.style.borderLeftColor = "rgba(255,45,85,0.6)"; e.currentTarget.style.boxShadow = "none"; }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-blue-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative prose prose-sm dark:prose-invert max-w-none">
-                    <p className="text-gray-800 dark:text-gray-300 leading-relaxed text-base">
-                      {t(description.description)}
-                    </p>
-                  </div>
+                  <span className="font-jetbrains text-redteam/50 text-xs mr-2">[{String(index + 1).padStart(2, "0")}]</span>
+                  <p className="text-[#94a3b8] leading-relaxed text-sm sm:text-base inline">
+                    {t(desc.description)}
+                  </p>
                 </div>
               ))}
             </div>
 
             <div className="pt-4">
               <a href="#projects" aria-label={t("AriaLabels.projects_section")}>
-                <button className="group relative px-6 py-3 bg-[#6366F1] dark:bg-[#4F46E5] hover:bg-[#4f46e5] dark:hover:bg-[#4338ca] text-white font-bold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#6366F1]/25 dark:hover:shadow-[#4F46E5]/25">
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Target className="w-4 h-4" />
-                    {t("Sobremi.boton_proyecto")}
-                  </span>
-                  <div className="absolute inset-0 bg-[#4F46E5] dark:bg-[#4338ca] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <button className="btn-rt-primary flex items-center gap-2">
+                  <Target className="w-4 h-4" />
+                  {t("Sobremi.boton_proyecto")}
                 </button>
               </a>
             </div>
           </div>
 
-          {/* Right Column - Skills */}
+          {/* ── Derecha — Skills ── */}
           <div className="space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-              <h3 className="text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white">
-                {t("Mishabilidades.habher")}
-              </h3>
-            </div>
-
-            {/* Skills Carousel */}
+            <h3 className="font-jetbrains text-xl text-terminal glow-green-text mb-6">
+              {t("Mishabilidades.habher")}
+            </h3>
             <div ref={skillsRef}>
               <SkillsCarousel />
             </div>
-
-            
           </div>
+
         </div>
       </div>
     </section>
