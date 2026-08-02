@@ -1,0 +1,215 @@
+{
+  "Menu": {
+    "Experiencia": "Experience",
+    "Sobre Mi": "About",
+    "Servicios": "Services",
+    "Proyectos": "Projects"
+  },
+  "TiempodeVida": {
+    "Edad": "Age"
+  },
+  "Experiencia": {
+    "title": "Experience",
+    "technologies": "Technologies",
+    "responsibilities": "Responsibilities"
+  },
+  "Servicios": {
+    "title": "Freelance services",
+    "subtitle": "System development and custom web solutions",
+    "cta": "Have a project?",
+    "cta_aria": "Go to contact",
+    "services": [
+      {
+        "id": 1,
+        "title": "Frontend Development",
+        "description": "Modern and optimized interfaces with React, Laravel Blade, and Tailwind CSS.",
+        "icon": "Code2"
+      },
+      {
+        "id": 2,
+        "title": "n8n Automation",
+        "description": "Workflow optimization and integration of REST APIs and Webhooks.",
+        "icon": "Settings"
+      },
+      {
+        "id": 3,
+        "title": "System Management",
+        "description": "Server administration, deployments, and Linux environment configuration.",
+        "icon": "Server"
+      },
+      {
+        "id": 4,
+        "title": "Cybersecurity",
+        "description": "Security audits, traffic analysis, and intrusion detection.",
+        "icon": "Wrench"
+      }
+    ]
+  },
+  "ServicioPage": {
+    "hero_title": "Services",
+    "hero_subtitle": "System development, automation, and cybersecurity. Comprehensive technological solutions for your business.",
+    "hero_cta": "Contact",
+    "hero_cta_aria": "Go to contact",
+    "section_title": "What I can do for you",
+    "card_button": "Learn more",
+    "back_to_home": "Back to home",
+    "pageServices": [
+      {
+        "id": 1,
+        "title": "Frontend Development",
+        "description": "Modern and optimized interfaces with React, Laravel Blade, and Tailwind CSS.",
+        "img": "/proyectos-img/armaly.webp",
+        "imgAlt": "Frontend Development"
+      },
+      {
+        "id": 2,
+        "title": "Automation",
+        "description": "Workflow optimization and integration of REST APIs and Webhooks via n8n.",
+        "img": "/proyectos-img/App-Escritorio.webp",
+        "imgAlt": "Automation"
+      },
+      {
+        "id": 3,
+        "title": "Server Management",
+        "description": "cPanel server administration, deployments, and availability assurance.",
+        "img": "/proyectos-img/proyecto-polos.webp",
+        "imgAlt": "Servers"
+      }
+    ]
+  },
+  "EXPERIENCE": [
+    {
+      "id": 1,
+      "date": "Sep 2025 - Present",
+      "title": "Frontend Developer - Web Systems",
+      "company": "IB Group | Lima, Peru",
+      "type": "Professional",
+      "description": "Leading interface development and UX optimization for insurance platforms. Automating critical flows and implementing advanced analytics.",
+      "responsibilities": [
+        "Interface development with Laravel (Blade), Tailwind CSS, and JavaScript",
+        "Workflow automation with n8n and REST API integration",
+        "Analytics implementation with Google Analytics 4 and Looker Studio",
+        "Server administration via cPanel and deployments",
+        "Collaboration in agile environments with Git/GitHub"
+      ],
+      "technologies": [
+        "Laravel",
+        "Tailwind CSS",
+        "JavaScript",
+        "n8n",
+        "Google Analytics",
+        "cPanel",
+        "Git"
+      ]
+    },
+    {
+      "id": 2,
+      "date": "May 2024 - Oct 2024",
+      "title": "Data Management & Customer Service",
+      "company": "RECSA | Lima, Peru",
+      "type": "Professional",
+      "description": "Record administration in corporate databases and resolution of first-level technical incidents.",
+      "responsibilities": [
+        "Database management for collection processes",
+        "First-level technical incident resolution",
+        "Meeting quality and speed KPIs"
+      ],
+      "technologies": [
+        "SQL",
+        "Excel",
+        "Customer Service"
+      ]
+    },
+    {
+      "id": 3,
+      "date": "2021 - 2024",
+      "title": "Systems Development Technician",
+      "company": "SISE Institute | Lima, Peru",
+      "type": "Education",
+      "description": "Technical professional training in information systems development.",
+      "responsibilities": [
+        "Application development and database management",
+        "Systems analysis and design",
+        "Practices in development environments"
+      ],
+      "technologies": [
+        "C#",
+        "SQL Server",
+        "PHP",
+        "JavaScript"
+      ]
+    }
+  ],
+  "Presentacion": {
+    "greeting": "Hey, I'm ",
+    "subtitle": "Systems Developer & Cybersecurity",
+    "description": "Specialized in frontend development, workflow automation, and cybersecurity. Focused on creating efficient, secure, and scalable technological solutions.",
+    "boton1": "About",
+    "boton2": "Download CV",
+    "link-cv": "/User/cv_jhunior_documentado_.pdf"
+  },
+  "Sobremi": {
+    "sobre": "About me",
+    "subsobre": "Transforming data into secure technological solutions",
+    "conoceme": "Know me better",
+    "boton_proyecto": "View projects",
+    "descripcion": {
+      "1": "I'm Jhunior Mendoza, a professional passionate about systems development and cybersecurity. Currently studying Systems Engineering at UPN and holding a technical degree in Information Systems Development.",
+      "2": "My experience focuses on frontend development using Laravel and React, as well as complex process automation through tools like n8n. Additionally, I have a strong interest in cybersecurity, operating my own labs for defense and attack simulations.",
+      "3": "I constantly seek to optimize user experience and platform security, integrating advanced analytics for data-driven decision making."
+    }
+  },
+  "Mishabilidades": {
+    "habher": "My skills and tools"
+  },
+  "ProjectsGrid": {
+    "title": "Featured Projects",
+    "subtitle": "Innovation and security in every line",
+    "projects": [
+      {
+        "order": 1,
+        "sectionNumber": 1,
+        "layout": "main",
+        "name": "Cybersecurity Lab (Home Lab)",
+        "description": "Controlled environment deployed on Fedora 43 and Arch Linux using Podman and VMware for Red Team and Blue Team simulations. Implementation of tools like Nmap, Metasploit, and Splunk.",
+        "skills": [
+          "Linux",
+          "Podman",
+          "VMware",
+          "Nmap",
+          "Splunk",
+          "Metasploit",
+          "Cybersecurity"
+        ],
+        "img": "/proyectos-img/App-Escritorio.webp",
+        "alt": "Cybersecurity Lab",
+        "href": "#",
+        "code": "https://github.com/JhuniorM"
+      },
+      {
+        "order": 2,
+        "sectionNumber": 2,
+        "layout": "b",
+        "name": "Lead Automation - n8n",
+        "description": "Automated lead capture and processing system integrating REST APIs and Webhooks to optimize workflow in corporate environments.",
+        "skills": ["n8n", "REST APIs", "Webhooks", "JavaScript"],
+        "img": "/proyectos-img/armaly.webp",
+        "alt": "n8n Automation",
+        "href": "#",
+        "code": "https://github.com/JhuniorM"
+      }
+    ]
+  },
+  "Footer": {
+    "description": "Systems Developer focused on technical excellence and digital security.",
+    "connect": "Connect With Me",
+    "collaborate": "Interested in collaborating?",
+    "rights": "All rights reserved."
+  },
+  "AriaLabels": {
+    "about_section": "Go to About section",
+    "projects_section": "Go to Projects section",
+    "whatsapp_contact": "Contact via WhatsApp for collaboration"
+  }
+}
+
