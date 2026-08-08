@@ -14,7 +14,7 @@ const ServicioPage = () => {
   }, [t]);
 
   const whatsappUrl =
-    "https://wa.me/51965728013?text=¡Hola!%20Me%20interesa%20contratar%20tus%20servicios.%20¿Podemos%20hablar?";
+    "https://wa.me/51946494623?text=¡Hola!%20Me%20interesa%20contratar%20tus%20servicios.%20¿Podemos%20hablar?";
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-20">
