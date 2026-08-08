@@ -62,24 +62,24 @@
     "pageServices": [
       {
         "id": 1,
-        "title": "Frontend Development",
-        "description": "Modern and optimized interfaces with React, Laravel Blade, and Tailwind CSS.",
-        "img": "/proyectos-img/armaly.webp",
-        "imgAlt": "Frontend Development"
+        "title": "Pentesting & Red Team",
+        "description": "Offensive infrastructure assessment with Nmap, Metasploit and Burp Suite.",
+        "img": "/proyectos-img/App-Escritorio.webp",
+        "imgAlt": "Red Team Operations"
       },
       {
         "id": 2,
         "title": "Automation",
         "description": "Workflow optimization and integration of REST APIs and Webhooks via n8n.",
-        "img": "/proyectos-img/App-Escritorio.webp",
+        "img": "/proyectos-img/armaly.webp",
         "imgAlt": "Automation"
       },
       {
         "id": 3,
-        "title": "Server Management",
-        "description": "cPanel server administration, deployments, and availability assurance.",
+        "title": "Frontend Development",
+        "description": "Modern and optimized interfaces with React, Laravel Blade, and Tailwind CSS.",
         "img": "/proyectos-img/proyecto-polos.webp",
-        "imgAlt": "Servers"
+        "imgAlt": "Frontend Development"
       }
     ]
   },
